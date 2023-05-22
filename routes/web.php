@@ -17,6 +17,10 @@ Route::get('/', function () {
     $data = ['products' => config('db.products')];
     return view('home', $data);
 })->name('home');
-Route::get('/comics', function () {
-    return view('comics');
-})->name('comics');
+Route::get('/comics/{id}', function ($id) {
+    $products = config('db.products');
+    if ($id >= 0 && count($products)) {
+        $product = $products[$id];
+        return view('comics.comic', compact('product'));
+    }
+})->name('comic');

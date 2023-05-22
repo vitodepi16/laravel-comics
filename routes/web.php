@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $data = ['products' => config('db.products')];
+    $data = ['products' => config('db.products'), 'footerLinks' => config('db.footerLinks')];
+
     return view('home', $data);
 })->name('home');
+
 Route::get('/comics/{id}', function ($id) {
     $products = config('db.products');
     if ($id >= 0 && count($products)) {
